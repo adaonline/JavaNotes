@@ -7,20 +7,23 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
-public class BlobTest {
+/**
+ *
+ */
+public class BlobInsertTest {
 
     public static void insert(String file){
         try {
-            String name=file.substring(file.lastIndexOf("\\")+1,file.lastIndexOf("."));
+
             Connection conn= DBUtil.getConn();
-            PreparedStatement statement=conn.prepareStatement("insert into img value(1,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement=conn.prepareStatement("insert into img value(null,?,?)");
             File f=new File(file);
             InputStream ins=new FileInputStream(f);
-            statement.setString(1,name);
+            statement.setString(1,"java");
             statement.setBinaryStream(2,ins,(int)f.length());
             int updateresult=statement.executeUpdate();
+            System.out.println("结果"+updateresult);
             DBUtil.close(statement,conn);
         }catch (Exception e){
             e.printStackTrace();
@@ -28,6 +31,6 @@ public class BlobTest {
     }
     public static void main(String[] args) {
         String filename="./src/Blob/java.jpg";
-        BlobTest.insert(filename);
+        BlobInsertTest.insert(filename);
     }
 }

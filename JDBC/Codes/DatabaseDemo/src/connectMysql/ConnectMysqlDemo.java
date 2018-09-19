@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class ConnectMysqlDemo {
     public static void main(String[] args) throws Exception{
         Connection conn=null;
-        //1.反射加载驱动
+        //1.反射加载驱动（记得导入对应的Mysql驱动包）
         Class.forName("com.mysql.jdbc.Driver");
         try{
             //2.获取数据库连接
