@@ -96,3 +96,18 @@ PreparedStatement也有三大方法执行sql，只不过不用传参数，因为
 通过Connection的preapreCall()获取该对象，调用存储过程格式：{call 过程名(?,?,?....)}，问号为占位符。
 
 示例代码：DatabaseDemo\src\StatementTest\CallableStatement
+
+## 四.处理大对象，例如Blob
+Blob是二进制长对象的意思，通常用来存储大文件，一般为图片或者声音。在数据库里，用Blob类型来保存该数据。</br>
+
+Blob用常量是无法表示的，所以数据库操作需要用到PreparedStatement来操作，其中用到的方法：
+
+void setBinaryStream(int parameterIndex, java.io.InputStream x,int length) throws SQLException;
+用于将二进制流写入参数。
+
+取出blob数据的时候，可以用ResultSet里的getBlob方法(可以传列下标或者字段名)，可以获得对应的Blob，blob里又有
+方法可以获取输入流，用来操作：
+
+java.io.InputStream getBinaryStream () throws SQLException;
+
+示例代码：DatabaseDemo\src\Blob (里面有插入，还有读取保存操作)
