@@ -75,7 +75,7 @@ public class ConnectMysqlDemo {
 
 ```
 
-## 三.示例解析
+## 三.基础示例解析
 ###### 1.statement
 有三种方法执行SQL，之前的程序中使用了executeQuery()执行查询。
 可以使用execute()来执行DDL语句还有DML语句。区别是DDL语句返回为0，DML返回受到影响的记录数。
@@ -111,3 +111,51 @@ void setBinaryStream(int parameterIndex, java.io.InputStream x,int length) throw
 java.io.InputStream getBinaryStream () throws SQLException;
 
 示例代码：DatabaseDemo\src\Blob (里面有插入，还有读取保存操作)
+
+## 五.ResultSetMetaData分析结果集合
+执行SQL后得到的结果集合ResultSet可以用记录指针来遍历操作，如果不清楚结果集合里的内容，可以用ResultSetMetaData来获取对应信息。
+ResultSet里有个getMetaData()方法用来获取ResultSetMetaData。
+
+ResultSetMetaData常用方法：
+
+- int getColumnCount() throws SQLException;--获取该结果集的列数量
+- String getColumnName(int column) throws SQLException;--获取对应索引的列名
+- int getColumnType(int column) throws SQLException; 返回对应的列类型，不同数字代表不同类型
+
+
+示例代码：DatabaseDemo\src\ResultSetMetaData
+
+## 六.事务处理
+
+JDBC提供了事务支持，由Connnection提供，Connnection默认是自动提交的，也就是默认关闭事务，这样每次执行sql语句，就会立刻提交到数据库，直接生效无法回滚。
+
+可以调用Connnection的setAutoCommit()方法来关闭自动提交：
+```
+//关闭自动提交，开启事务
+setAutoCommit(false);
+```
+还可以用getAutoCommit()方法来获取当前连接的自动提交模式是什么。
+
+事务开始后，可以完全按照之前的方式操作数据库，但是SQl所做的修改并不会立刻生效，因为事务没有提交，可以采用commit()方法来提交事务：
+```
+//提交事务
+conn.commit();
+```
+可以采用rollback()方法来回滚事务：
+```
+conn.rollback();
+```
+
+当connection遇到一个SQlException异常的时候，系统不会正常退出，事务会回滚的。但是如果捕获了异常，则需要在catch中显式的回滚事务才可以。
+
+Connection也有中间点的方法，也就是回滚到某个点的方式：
+```
+//创建一个未命名的中间点，返回中间点对象
+Savepoint setSavePoint();
+//创建指定名称的中间点，返回对象
+Savepoint setSavepoint(String name);
+//回滚到指定的中间点
+rollback(Savepoint savepoint);
+```
+还有对应的批量更新的内容，具体在示例中说明。
+示例：
