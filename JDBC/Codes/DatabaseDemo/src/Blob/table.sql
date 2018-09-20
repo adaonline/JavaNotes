@@ -1,5 +1,5 @@
 CREATE TABLE `img` (
-  `img_id` int(11) NOT NULL auto,
+  `img_id` int(11) NOT NULL auto_increment,
   `imgname` varchar(255) NOT NULL,
   `imgdata` mediumblob NOT NULL,
   PRIMARY KEY (`img_id`)
