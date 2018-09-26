@@ -17,33 +17,36 @@
 - synchronized和ReentrantLock的区别、synchronized锁普通方法和锁静态方法、死锁的原理及排查方法等等
 ## 5. IO
 - FILE IO
-- Soket IO
 - 阻塞/非阻塞的区别、同步/异步的区别，借此理解阻塞IO、非阻塞IO、多路复用IO、异步IO这四种IO模型，Socket IO如何和这四种模型相关联。
 - NIO
 - 多路复用的概念
 - Netty
-## 6. JDK源码
+## 6.网络编程
+- 网络IO
+- Socket
+- 网络协议 Http，Tcp、IP
+## 7. JDK源码
 - 集合的实现代码
 - 锁的实现代码，ReentrantLock、AQS的源代码
 - AtomicInteger的实现原理，主要能说清楚CAS机制并且AtomicInteger是如何利用CAS机制实现的
 - 线程池的实现代码
 - Object的内容
-## 7. 框架
+## 8. 框架
 - Spring内容
 - Mybatis，hibernate
 - AOP等等
-## 8. 数据库
+## 9. 数据库
 - sql语句，基础还有优化
 - 数据库性能优化，mysql性能调优
 - JDBC
-## 9. 数据结构和算法分析
+## 10. 数据结构和算法分析
 - 数组，栈，链表等线性表
 - 树的知识，
 - 图
 - 排序
 - 适用场景
 
-## 10. Java虚拟机
+## 11. Java虚拟机
 - 内存模型
 - 垃圾收集算法
 - 类加载
@@ -51,7 +54,7 @@
 - volatile关键字使用规则
 - 内存布局
 - 虚拟机调优
-## 11. WEB
+## 12. WEB
 - web.xml内容
 - servlet,listener,filter
 - get/post
@@ -60,9 +63,9 @@
 - SOA，RPC
 - tomcat原理学习
 - 自己能手动搭建web框架
-## 12.分布式
-## 13.微服务
-## 14.工程化内容
+## 13.分布式
+## 14.微服务
+## 15.工程化内容
 - Maven内容原理
 - Git内容原理
 
