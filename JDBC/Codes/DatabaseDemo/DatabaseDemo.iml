@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://E:/JAVA_WORK/all_lib/mysql-connector-java-5.1.43/mysql-connector-java-5.1.43-bin.jar!/" />
+          <root url="jar://E:/JAVA_WORKS/all_lib/commons-dbcp2-2.5.0/commons-dbcp2-2.5.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://E:/JAVA_WORK/all_lib/commons-dbcp2-2.5.0/commons-dbcp2-2.5.0.jar!/" />
+          <root url="jar://E:/JAVA_WORKS/all_lib/c3p0-0.9.5.2/lib/c3p0-0.9.5.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
