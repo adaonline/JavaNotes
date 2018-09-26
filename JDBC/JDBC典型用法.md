@@ -158,4 +158,10 @@ Savepoint setSavepoint(String name);
 rollback(Savepoint savepoint);
 ```
 还有对应的批量更新的内容，具体在示例中说明。
-示例：
+示例：DatabaseDemo\src\Transaction
+
+## 七.数据库连接池
+每一次操作一次数据库就要重新新建一次连接，然后操作完后重新关闭，这样导致系统性能低下，效率下降。
+解决方案：应用启动时候，创建一定数目的连接组成连接池，在需要的时候从中获取连接，操作完放回，无须关闭或者重新打开，这样将大大提高运行效率。
+
+JDBC数据库连接池由javax.sql.DataSouece接口表示，实现有DBCP,C3P0等等。
