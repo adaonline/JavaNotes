@@ -1,0 +1,22 @@
+package StreamTest;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+public class FileOutputStreamTest {
+    public static void main(String[] args) {
+        try {
+            FileInputStream fileInputStream=new FileInputStream("./src/StreamTest/FileOutputStreamTest.java");
+            FileOutputStream fileOutputStream=new FileOutputStream("thisFile.txt");
+            byte[] buf=new byte[20];
+            int readed=0;
+            while ((readed=fileInputStream.read(buf))>0){
+                fileOutputStream.write(buf,0,readed);
+            }
+            fileInputStream.close();
+            fileOutputStream.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
