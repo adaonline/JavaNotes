@@ -114,6 +114,10 @@ OutputStream/Writer API(共有的API)：
 
 其中InputStreamReader将字节输出流转成字符输入流，OutputStreamWriter将字节输出流转成字符输出流。
 
+**字符流操作比字节流方便，所以基本不用字符转字节，java语言设计的时候就没有添加字符转字节的转换。**
+
+示例：**IODemo\src\StreamTest\TransFormStream**(键盘输入流不太方便，并且输入的都是字符，就将其转成字符流，将普通的reader包装成BUfferReader，可以用readline读取行)
+
 
 
 
