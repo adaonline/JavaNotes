@@ -2,14 +2,14 @@ package StreamTest;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
+//实现一个文件拷贝功能
 public class FileOutputStreamTest {
     public static void main(String[] args) {
         try {
             //输入流读取
             FileInputStream fileInputStream=new FileInputStream("./src/StreamTest/FileOutputStreamTest.java");
             //输出流写出
-            FileOutputStream fileOutputStream=new FileOutputStream("thisFile.txt");
+            FileOutputStream fileOutputStream=new FileOutputStream("FileOutputStreamTest测试文件.txt");
             byte[] buf=new byte[20];
             int readed=0;
             //循环读取并且写入到文件里
@@ -18,6 +18,7 @@ public class FileOutputStreamTest {
             }
             fileInputStream.close();
             fileOutputStream.close();
+            //不要忘记关闭输出流，close之前会自动flush的
         }catch (Exception e){
             e.printStackTrace();
         }
