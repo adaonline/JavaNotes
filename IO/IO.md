@@ -118,6 +118,45 @@ OutputStream/Writer API(共有的API)：
 
 示例：**IODemo\src\StreamTest\TransFormStream**(键盘输入流不太方便，并且输入的都是字符，就将其转成字符流，将普通的reader包装成BUfferReader，可以用readline读取行)
 
+##### 4.3.2推回输入流PushbackInputStream和PushbackReader
+
+推回输入流是一种可以支持重读的流，有自己的推回缓冲区，可以将内容推回到推回缓冲区中去重复读取。
+
+对应InputStream还有Reader的API，推回输入流也有自己的API
+- void unread(byte[]/char[] buf)：将一个字节或者字符推回到推回缓冲区中，从而可以重复读取
+- void unread(byte[]/char[] buf,int off,int len):将一个字节或者字符数组从off开始，长度为len的内容推回去
+- void unread(int b):讲一个字节或者字符推回去
+- 推回的时候，内容超过缓冲区的长度，会引发IOException异常(Pushback buffer overflow)
+
+当程序调用unread的时候会推回内容到推回缓冲区，**调用read的时候，也是先从推回缓冲区读取，读取完推回缓冲区，并没有装满read所需要的内容时候才会从原来的默认输入流中读取**。
+
+所以，初始化的是需要指定推回缓冲区大小，默认为1。
+
+示例：IODemo\src\StreamTest\PushBack
+
+##### 4.3.3重定向输入输出流
+
+我们的System.out还有System.in一般就是输出和输入，一个到显示器，一个从键盘获取。我们可以把某些流重定向到其他地方，例如system.out重定向到文件等等。
+
+System类里的重定向 API：
+- static void setErr(PringStream err):重定向标准错误输出流
+- static void setIn(InputStream in)：重定向标准输入流
+- static void setOut(PrintStream out):重定向标准输出流
+
+示例:IODemo\src\StreamTest\Reset(将系统输出重定向到文件，将文件的输入重定向到输入)
+
+
+##### 4.3.4读写其他进程数据
+使用Runtime对象的exec()方法可运行平台上的其他程序，这个方法会产生一个Process对象，这个对象是这个Java程序的子进程。
+
+Process类提供了API用来让java程序跟这个子进程进行通信：
+- InputStream getErrorStream()：获取子进程的错误流
+- InputStream getInputStream()：获取子进程的输入流
+- OutPutStream getOutputStream(): 获取子进程的输出流
+
+站在Java程序的角度看，子进程读取Java程序的数据，就是输出流，读取子进程的数据就是输入流。
+
+示例：IODemo\src\StreamTest\Process
 
 
 
