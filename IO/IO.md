@@ -160,3 +160,35 @@ Process类提供了API用来让java程序跟这个子进程进行通信：
 
 
 
+### 5.RandomAccessFile
+RandomAccessFile 是功能很强大一个文件访问类，与其他不同的是，他可以随机访问文件，跳转到文件任意位置去读写数据。RandomAccessFile可以自由定位指针，所以，可以追加内容，需要追加的话就用这个类。
+
+最大的局限性就是，RandomAccessFile只能读写文件，不能做其他的节点操作。
+
+RandomAccessFile提供了以下的方法操作指针:
+- long getFilePointer():返回文件指针当前位置
+- void seek(long pos):将文件指针定位到pos位置
+
+RandomAccessFile的读写API跟之前输入输出流的API是一样的。
+
+RandomAccessFile的构造有两种（一种是靠字符串指定文件，一种靠File指定文件），还有一个mode值，用来说明访问模式：
+- r:只读方式打开，写入，就会报IO错误
+- rw：读写方式打开文件，不存在文件就创建
+- rws：读写方式打开文件，每个内容或者元数据都直接写到底层数据存储
+- rwd：读写打开，对内容每个更新写到底层存储
+
+示例:
+**IODemo\src\StreamTest\RandomAccessFile\RandomAccessFileTest.java**(普通的移动指针读取文件)
+**IODemo\src\StreamTest\RandomAccessFile\RandomAccessAppendText.java**(在文件后追加内容，先将指针移动到最后然后去，写入)
+
+++中途插入的办法：++
+
+RandomAccessFile的中途写入，直接移动指针到中间写入会覆盖后续内容的，如果需要向指定的位置插入内容，
+ 1. 程序需要把插入点后面的内容读入缓冲区(文件或者某种缓冲地方)，
+ 2. 插入需要写入的内容后，
+ 3. 再把缓冲区的文件追加到后面
+
+示例：**IODemo\src\StreamTest\RandomAccessFile\RandomAccessMiddleAddTest.java**
+
+其实，断点下载的原理也是这样，每次下载文件，先建立两个文件，一个是跟需要下载一样大的文件，一个是用来记录断点指针位置的文件，当每次RandomAccessFile读取一些网络内容保存后，前一个文件保存了一部分需要下载的数据，后一个文件保存了当前文件的指针位置，下次重新连接网络下载的时候，读取指针位置，从网络流里同样读取到需要下载的对应位置，就可以继续接着上一次的下载了。
+
