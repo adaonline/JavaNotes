@@ -45,7 +45,7 @@ public class RandomAccessMiddleAddTest {
                 randomAccessFile.write(buf,0, readed);
             }
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 }
