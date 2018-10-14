@@ -6,7 +6,7 @@ import java.io.RandomAccessFile;
 public class RandomAccessAppendText {
     public static void main(String[] args) {
         try {
-            RandomAccessFile randomAccessFile=new RandomAccessFile("RandomAccessFile测试文件.txt","rw");
+            RandomAccessFile randomAccessFile=new RandomAccessFile("./src/StreamTest/RandomAccessFile/[RandomAccessFile追加]测试文件.txt","rw");
             //直接将指针移动到最后
             randomAccessFile.seek(randomAccessFile.length());
             //每运行一次就给后面增加一次内容

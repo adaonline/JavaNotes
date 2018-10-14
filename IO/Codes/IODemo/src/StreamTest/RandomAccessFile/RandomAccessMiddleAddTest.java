@@ -21,7 +21,7 @@ public class RandomAccessMiddleAddTest {
             //退出时候删除临时文件
             file.deleteOnExit();
 
-            RandomAccessFile randomAccessFile=new RandomAccessFile("RandomAccessFile插入写入测试文件.txt","rw");
+            RandomAccessFile randomAccessFile=new RandomAccessFile("./src/StreamTest/RandomAccessFile/RandomAccessFile插入写入测试文件.txt","rw");
             //使用临时文件保存数据
             FileOutputStream outputStream=new FileOutputStream(file);
             FileInputStream inputStream=new FileInputStream(file);

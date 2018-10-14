@@ -37,7 +37,7 @@ class GetAndOutPrint{
         try {
             System.out.println("打印标记");
             Scanner in=new Scanner(System.in);
-            PrintStream printStream=new PrintStream(new FileOutputStream("WriterToProcess测试文件.txt"));
+            PrintStream printStream=new PrintStream(new FileOutputStream("./src/StreamTest/Process/WriterToProcess测试文件.txt"));
             in.useDelimiter("\n");
             while (in.hasNext()){
                 printStream.println(in.next());
