@@ -78,4 +78,59 @@ Channel channel=selectionKey.Channel();
 Selector selector=selectionKey.selector();
 ```
 ### 附加对象到selectionKey
-可以将一个对象或者一些信息加在selectionKey上面，
+可以将一个对象或者一些信息加在selectionKey上面：
+```
+selectionKey.attch(object);
+Object attchObject=selectionKey.attachment();
+```
+还可以在用register()方法向Selector注册Channel的时候附加对象：
+```
+SelectionKey key=channel.register(selector,selectionKey.OP_READ,object);
+```
+
+
+
+
+## 4.Selector选择通道
+一旦注册了多个通道，就可以调用几个重载的select方法，返回设置的感兴趣的已经准备就绪的通道。
+
+- int select()  **阻塞到至少有一个通道在注册的事件上就绪了**
+- int select(long timeout) **设置阻塞的毫秒数**
+- int selectNow() **不会阻塞，不管什么就绪就立刻返回，如果没有可选择的通道，返回0**
+
+
+返回的int值代表有多少通道已经就绪了（返回上次调用select后就绪的通道数目）。如果有一个通道就绪，返回1，如果再次调用，另外一个就绪了，返回1。
+
+
+#### selectKeys()
+有通道就绪后，可以调用selector的这个方法，访问键集：
+```
+Set selectedKey=selector.selectedKeys();
+```
+可以遍历这个集合来访问就绪通道：
+```
+Set selectedKeys = selector.selectedKeys();
+Iterator keyIterator = selectedKeys.iterator();
+while(keyIterator.hasNext()) {
+    SelectionKey key = keyIterator.next();
+    if(key.isAcceptable()) {
+        //连接就绪
+    } else if (key.isConnectable()) {
+        //连接就绪
+    } else if (key.isReadable()) {
+        // 可读就绪
+    } else if (key.isWritable()) {
+        // 写入就绪
+    }
+    keyIterator.remove();
+}
+```
+循环遍历每个键，检测事件就绪。
+
+最后需要删除，因为selector不会自己从选择键集中移除selectedKey实例，处理完后必须自己移除。下次就绪会再次放入的。
+
+#### wakeUp()
+调用这个方法会让阻塞在select的线程立即返回。
+
+#### close()
+调用selector的close会关闭，并且注册的selectedKey实例都会无效，通道本身不会关闭。

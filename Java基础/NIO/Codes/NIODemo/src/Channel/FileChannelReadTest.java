@@ -7,12 +7,12 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 
-public class ChannelTest {
+public class FileChannelReadTest {
     public static void main(String[] args) {
         RandomAccessFile accessFile=null;
         try {
 
-            accessFile=new RandomAccessFile("./src/Channel/channel测试文件.txt","rw");
+            accessFile=new RandomAccessFile("./src/Channel/channelRead测试文件.txt","rw");
             FileChannel channel=accessFile.getChannel();
             /**
              * 当然也可以通过FileInputStream.getChannel()进行操作
@@ -40,7 +40,7 @@ public class ChannelTest {
                     System.out.print(charBuffer.get());
                 }
                 charBuffer.clear();
-                buf.compact();//因为我们是用charbuffer去读取的，这样
+                buf.compact();//compact会继续接着上次没有读完的位置
                 readnum=channel.read(buf);
             }
         }catch (Exception e){
