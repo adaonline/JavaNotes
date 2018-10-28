@@ -15,11 +15,27 @@ public class Client {
             if(socketChannel.finishConnect()){
                 int i=0;
                 while (true){
-
+                    Thread.sleep(1000);
+                    String info="这是来自客户端的第"+i+++"次!";
+                    buffer.clear();
+                    buffer.put(info.getBytes());
+                    buffer.flip();
+                    while(buffer.hasRemaining()){
+                        System.out.println("客服端发送："+buffer);
+                        socketChannel.write(buffer);
+                    }
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
+        }finally {
+            try {
+                if(socketChannel!=null){
+                    socketChannel.close();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }
