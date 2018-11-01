@@ -10,6 +10,7 @@ public class MappedByteBufferTest {
         mappedFile();
         method();
     }
+    //MappedByteBuffer的速度更快
     public static void mappedFile(){
         RandomAccessFile accessFile=null;
         FileChannel fileChannel=null;
