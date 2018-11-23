@@ -1,0 +1,2 @@
+a=ReflectTest.Methods.A
+a%name=aaaa
