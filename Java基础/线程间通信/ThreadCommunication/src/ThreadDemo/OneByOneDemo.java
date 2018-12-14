@@ -1,4 +1,4 @@
-package OnebyOne;
+package ThreadDemo;
 //如何让两个线程依次执行
 public class OneByOneDemo {
     private static void demo1(){
