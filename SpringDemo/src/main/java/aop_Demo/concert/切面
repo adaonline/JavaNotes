@@ -1,0 +1,10 @@
+切面类的声明必须有@Aspect注解
+@Component注解是可选的
+1.有@Component则生成了切面实例
+2.没有@Component则需要主动去生成切面实例，这里在配置类里ConcertConfig生成了实例
+
+切点声明有四种，前，后，异常，环绕
+
+多个切面同时存在且定义，也会同时触发
+
+环绕中有个ProceedingJoinPoint参数，用来调用被通知的方法，将控制权教给被控制的方法
