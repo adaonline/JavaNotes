@@ -1,4 +1,4 @@
-package aop_Demo.concert;
+package aop_Demo.aopWithinAnnotation;
 
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -9,24 +9,24 @@ import org.aspectj.lang.annotation.Before;
 //@Component
 public class Audience {
     //表演前
-    @Before("execution(** aop_Demo.concert.Performance.perform(..))")
+    @Before("execution(** aop_Demo.aopWithinAnnotation.Performance.perform(..))")
     public void silenceCellPhones(){
         System.out.println("手机静音");
     }
 
     //表演前
-    @Before("execution(** aop_Demo.concert.Performance.perform(..))")
+    @Before("execution(** aop_Demo.aopWithinAnnotation.Performance.perform(..))")
     public void takeSeats(){
         System.out.println("找座位");
     }
     //表演后
-    @AfterReturning("execution(** aop_Demo.concert.Performance.perform(..))")
+    @AfterReturning("execution(** aop_Demo.aopWithinAnnotation.Performance.perform(..))")
     public void applause(){
         System.out.println("鼓掌啪啪啪！");
     }
 
     //表演失败后
-    @AfterThrowing("execution(** aop_Demo.concert.Performance.perform(..))")
+    @AfterThrowing("execution(** aop_Demo.aopWithinAnnotation.Performance.perform(..))")
     public void demandRefund(){
         System.out.println("要求退款");
     }

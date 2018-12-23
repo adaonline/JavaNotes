@@ -1,4 +1,4 @@
-package aop_Demo.concert;
+package aop_Demo.aopWithinAnnotation;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Audience_around {
-    @Pointcut("execution(** aop_Demo.concert.Performance.perform(..))")
+    @Pointcut("execution(** aop_Demo.aopWithinAnnotation.Performance.perform(..))")
     public void performance() {}
 
     @Around("performance()")

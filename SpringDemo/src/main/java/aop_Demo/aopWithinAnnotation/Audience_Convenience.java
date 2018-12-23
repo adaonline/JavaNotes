@@ -1,13 +1,12 @@
-package aop_Demo.concert;
+package aop_Demo.aopWithinAnnotation;
 
 import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
 
 //@Aspect
 //@Component
 public class Audience_Convenience {
     //定义且命名一个切点
-    @Pointcut("execution(** aop_Demo.concert.Performance.perform(..))")
+    @Pointcut("execution(** aop_Demo.aopWithinAnnotation.Performance.perform(..))")
     public void performance() {};
     //表演前
     @Before("performance()")
