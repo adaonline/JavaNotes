@@ -2,19 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
-
     <bean id="audience" class="aop_Demo.withinConfiguration.Audience"/>
     <bean class="aop_Demo.withinConfiguration.PerformanceImpl"/>
     <aop:config>
         <aop:aspect ref="audience">
             <aop:pointcut id="performance" expression="execution(** aop_Demo.withinConfiguration.Performance.perform(..))"/>
-            <!--如果不提前定义pointcut，每次都得这样写-->
-            <aop:before method="silenceCellPhones" pointcut="execution(** aop_Demo.withinConfiguration.Performance.perform(..)))"/>
-            <!--以下是简写形式-->
-            <!--<aop:before method="silenceCellPhones" pointcut-ref="performance"/>-->
-            <aop:after-returning method="applause" pointcut-ref="performance"/>
-            <aop:after-throwing method="demandRefund" pointcut-ref="performance"/>
+
+            <aop:around method="watchPerformance" pointcut-ref="performance"/>
         </aop:aspect>
     </aop:config>
-
 </beans>

@@ -15,6 +15,7 @@ public class PerformanceTest {
 
     @Test
     public void acttest(){
+        System.out.println("=====这是采用注解实现的切面=====");
         performance.perform();
     }
 
