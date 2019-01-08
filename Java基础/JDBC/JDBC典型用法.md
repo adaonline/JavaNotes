@@ -28,7 +28,7 @@
 - boolean next(): 将指移动到下一行，如果记录有效则返回true
 - boolean last(): 将指针移动到最后一行
 - 指针到了指定行时候，可以通过getXxx(int columnindex) 或者 getXxx(String columnlabel)方法获取当前行的指定列的值，前一个根据索引，后者根据列名获取。还有一个getObject或者对应列的对象
-
+###### ++ResultSetMetaData:操作结果集合++
 
 ## 二. JDBC步骤
 1. 反射加载驱动
